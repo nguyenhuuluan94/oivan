@@ -1,10 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { combineLatest, Observable } from 'rxjs';
+import { combineLatest } from 'rxjs';
 import { Article } from '../../core/api/article.model';
 import { ArticleQuery } from '../../core/api/article.query';
 import { ActivatedRoute } from '@angular/router';
 import { ArticleService } from '../../core/api/article.service';
-import { tap } from 'rxjs/operators';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 @UntilDestroy()
@@ -14,7 +13,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
   styleUrls: ['./article-detail.component.scss']
 })
 export class ArticleDetailComponent implements OnInit, OnDestroy {
-  article$: Observable<Article | undefined>;
+  article: Article;
 
   constructor(
     private articleQuery: ArticleQuery,
@@ -28,16 +27,19 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
       .subscribe(([params, queryParams]) => {
         if (params && params['id'] && queryParams && queryParams['url']) {
           const id = params['id'];
-          this.article$ = this.articleQuery.selectEntity(id).pipe(
-            tap(response => {
-              if (!response) {
-                // there is no article in the store
-                this.articleService.getArticleByURL(queryParams['url'])
-                  .pipe(untilDestroyed(this))
-                  .subscribe()
-              }
-            })
-          );
+          this.articleQuery.selectEntity(id)
+            .pipe(untilDestroyed(this))
+            .subscribe(
+              article => {
+                if (article) {
+                  this.article = article;
+                } else {
+                  // there is no article in the store
+                  this.articleService.getArticleByURL(queryParams['url'])
+                    .pipe(untilDestroyed(this))
+                    .subscribe(article => this.article = article)
+                }
+              })
         }
       })
   }

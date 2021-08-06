@@ -26,7 +26,6 @@ export class ArticlesComponent implements OnInit, OnDestroy, AfterViewInit {
   isLoadingSegment = false;
   stop: Subject<any> = new Subject<any>();
   queue: Queue = new Queue();
-  articleID = 0; // no ID when fetch article, manually grant ID
 
   constructor(
     private articleService: ArticleService,
@@ -73,7 +72,11 @@ export class ArticlesComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   viewDetail(item: Article) {
-    this.router.navigate([item.url]);
+    this.router.navigate([item.id], {
+      queryParams: {
+        url: item.url
+      }
+    });
   }
 
   ngAfterViewInit(): void {
@@ -126,15 +129,12 @@ export class ArticlesComponent implements OnInit, OnDestroy, AfterViewInit {
     this.isLoadingSegment = true;
     const currentQueueItems: Article[] = this.queue.dequeue();
     const requests: Observable<Article>[] = currentQueueItems.map(item => {
-      return this.articleService.getArticleByURL(item.url)
+      return this.articleService.getArticleByURL(item.url, item)
     })
     combineLatest(requests)
       .pipe(untilDestroyed(this))
       .subscribe(
-        val => {
-          console.log(val)
-          this.fetchArticleInfo()
-        },
+        _ => this.fetchArticleInfo(),
         _ => this.fetchArticleInfo()
       )
   }

@@ -1,4 +1,4 @@
-export interface Article {
+export class Article {
   content: string;
   coverImageUrl: string;
   description: string;
@@ -6,5 +6,5 @@ export interface Article {
   title: string;
   url: string;
   meta: string;
-  id: number;
+  id: number;   // no ID when fetch article, manually grant ID
 }
