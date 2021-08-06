@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+@import "src/app/styles/custom-styles";
+
+body {
+  background: #E4E6EC;
+  overflow-x: hidden;
+}
+
+html, body { height: 100%; }
+
+
+

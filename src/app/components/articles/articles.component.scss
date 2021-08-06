@@ -1,0 +1,64 @@
+.container {
+  min-height: calc(100vh - 200px);
+
+  .tagline {
+    height: 32px;
+    position: relative;
+    font-size: 1.125rem;
+    font-style: italic;
+    color: #666;
+    font-family: georgia, Times New Roman, serif;
+    line-height: 1.75;
+
+    &__content {
+      padding: 8px 20px;
+    }
+
+    &__line {
+      background-color: #afaaaa;
+      height: 1px;
+      width: 100vw;
+      display: block;
+      z-index: -2;
+      flex: 1;
+    }
+  }
+
+  .headline {
+    font-weight: 500;
+  }
+
+  .card {
+    background-position: center;
+
+    &-headline {
+      display: flex;
+      align-items: center;
+      max-height: 300px;
+      img {
+        height: 100%;
+      }
+    }
+  }
+
+  .bg-container {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    opacity: 0.45;
+    height: 100%;
+  }
+}
+
+::ng-deep .dialog-background-transparent {
+  .mat-dialog-container {
+    background: transparent;
+  }
+}
+
+
+
+
+

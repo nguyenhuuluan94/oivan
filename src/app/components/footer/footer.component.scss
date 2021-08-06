@@ -1,0 +1,9 @@
+@import "src/app/styles/variable";
+
+.blog-footer {
+  height: $footer-height;
+  padding: 2.5rem 0;
+  color: #727272;
+  text-align: center;
+  border-top: 1px solid #afaaaa;
+}
