@@ -10,10 +10,9 @@ import { AppRoutes } from './app.routes';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatDividerModule } from '@angular/material/divider';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { MatDialogModule } from '@angular/material/dialog';
 import { SharedModule } from './shared/shared.module';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { MaterialModule } from './shared/libs/material/material.module';
 
 @NgModule({
   declarations: [
@@ -29,10 +28,9 @@ import { SharedModule } from './shared/shared.module';
     HttpClientModule,
     RouterModule.forRoot(AppRoutes),
     BrowserAnimationsModule,
-    MatDividerModule,
-    MatProgressBarModule,
-    MatDialogModule,
-    SharedModule
+    MaterialModule,
+    SharedModule,
+    LazyLoadImageModule
   ],
   providers: [],
   bootstrap: [AppComponent]

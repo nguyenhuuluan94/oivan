@@ -12,8 +12,7 @@ const Providers = [
 ]
 
 @NgModule({
-  imports: [
-    Providers
-  ]
+  imports: [Providers],
+  exports: [Providers]
 })
 export class MaterialModule { }

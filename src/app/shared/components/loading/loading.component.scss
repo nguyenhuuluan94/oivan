@@ -1,3 +1,4 @@
+@import "src/app/styles/variable";
 
 .spinner {
   margin: 0 auto;
@@ -8,7 +9,7 @@
 }
 
 .spinner > div {
-  background-color: #ff0079;
+  background-color: $primary;
   opacity: 0.95;
   height: 100%;
   width: 6px;
