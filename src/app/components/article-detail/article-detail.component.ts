@@ -14,6 +14,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 })
 export class ArticleDetailComponent implements OnInit, OnDestroy {
   article: Article;
+  isLoading: boolean;
 
   constructor(
     private articleQuery: ArticleQuery,
@@ -22,6 +23,7 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.isLoading = true;
     combineLatest([this.route.params, this.route.queryParams])
       .pipe(untilDestroyed(this))
       .subscribe(([params, queryParams]) => {
@@ -33,11 +35,16 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
               article => {
                 if (article) {
                   this.article = article;
+                  this.isLoading = false;
                 } else {
                   // there is no article in the store
                   this.articleService.getArticleByURL(queryParams['url'])
                     .pipe(untilDestroyed(this))
-                    .subscribe(article => this.article = article)
+                    .subscribe(article => {
+                        this.article = article;
+                        this.isLoading = false;
+                      }, _ => this.isLoading = false
+                    )
                 }
               })
         }

@@ -1,24 +1,27 @@
-<div class="container px-4 pb-4 pt-5">
-  <ng-container *ngIf="article; else emptyState">
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/">Home</a></li>
-        <li class="breadcrumb-item active" aria-current="page">News</li>
-      </ol>
-    </nav>
-    <div class="display-4">{{ article.title }}</div>
-    <p class="fst-italic mt-2">{{ article.description }}</p>
-    <div class="w-100 my-4">
-      <img [src]="article.coverImageUrl" class="w-100" alt="photo">
-    </div>
-    <div [innerHTML]="article.content" style="text-align: justify"></div>
-    <div *ngIf="article.meta" style="text-align: right">{{ article.meta }}</div>
-  </ng-container>
-  <ng-template #emptyState>
-    <div class="text-center">
-      <div class="display-3 text-center">Sorry, there are no post</div>
-      <img src="assets/content.svg" class="mw-100" alt="photo">
-    </div>
-  </ng-template>
+<app-loading [isLoading]="isLoading"></app-loading>
+<div class="container px-4 pb-4 pt-5" >
+  <div [hidden]="isLoading">
+    <ng-container *ngIf="article; else emptyState">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">News</li>
+        </ol>
+      </nav>
+      <div class="display-4 title">{{ article.title }}</div>
+      <p class="fst-italic mt-2">{{ article.description }}</p>
+      <div class="w-100 my-4">
+        <img [src]="article.coverImageUrl" class="w-100" alt="photo">
+      </div>
+      <div [innerHTML]="article.content" style="text-align: justify"></div>
+      <div *ngIf="article.meta" style="text-align: right">{{ article.meta }}</div>
+    </ng-container>
+    <ng-template #emptyState>
+      <div class="text-center">
+        <div class="display-3 text-center">Sorry, there are no post</div>
+        <img src="assets/content.svg" class="mw-100" alt="photo">
+      </div>
+    </ng-template>
+  </div>
 </div>
 

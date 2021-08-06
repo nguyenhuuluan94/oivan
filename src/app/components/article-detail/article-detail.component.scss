@@ -2,4 +2,8 @@
 
 .container {
   min-height: calc(100vh - #{$footer-height} - #{$header-height} - 5px);
+
+  .title {
+    color: $primary;
+  }
 }

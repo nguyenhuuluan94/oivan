@@ -1,0 +1,16 @@
+@import "~bootstrap/scss/bootstrap-grid.scss";
+
+@include media-breakpoint-down(lg) {
+  .headline-section {
+    text-align: justify;
+    .card-headline {
+      max-height: 250px;
+    }
+    .headline-title {
+      font-size: 20px;
+    }
+    .headline-meta {
+      text-align: right;
+    }
+  }
+}
