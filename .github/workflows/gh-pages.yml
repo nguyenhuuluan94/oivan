@@ -18,7 +18,7 @@ jobs:
       - run: npm run build
       - run: npm run deploy
       - name: All things angular
-        uses: AhsanAyaz/angular-deploy-gh-pages-actions@1.3.2
+        uses: AhsanAyaz/angular-deploy-gh-pages-actions@v1.3.2
         with:
           github_access_token: ${{ secrets.OIVAN_REPO_TOKEN }}
           build_configuration: production
