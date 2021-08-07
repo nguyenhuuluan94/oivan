@@ -20,12 +20,12 @@ import { Queue } from '../../core/helper/queue.class';
 export class ArticlesComponent implements OnInit, OnDestroy, AfterViewInit {
   articles: Article[] = [];
   headlineArticle: Article;
-  index = 0;
-  page = 1;
   isLoading = false;
-  isLoadingSegment = false;
-  stop: Subject<any> = new Subject<any>();
-  queue: Queue = new Queue();
+
+  private page = 1;
+  private stop: Subject<any> = new Subject<any>();
+  private isQueueOnProcessing = false;
+  private queue: Queue = new Queue();
 
   constructor(
     private articleService: ArticleService,
@@ -107,11 +107,11 @@ export class ArticlesComponent implements OnInit, OnDestroy, AfterViewInit {
       )
       .subscribe(
         articles => {
-          if (articles && articles.length) {
+          if (articles?.length) {
             this.page++;
             this.isLoading = false;
             this.queue.enqueue(articles);
-            if (this.isLoadingSegment) {
+            if (this.isQueueOnProcessing) {
               return;
             }
             this.fetchArticleInfo();
@@ -127,10 +127,10 @@ export class ArticlesComponent implements OnInit, OnDestroy, AfterViewInit {
   // To avoid ddos server, get info in queue
   private fetchArticleInfo(): void {
     if (this.queue.isEmpty) {
-      this.isLoadingSegment = false;
+      this.isQueueOnProcessing = false;
       return;
     }
-    this.isLoadingSegment = true;
+    this.isQueueOnProcessing = true;
     const currentQueueItems: Article[] = this.queue.dequeue();
     const requests: Observable<Article>[] = currentQueueItems.map(item => {
       return this.articleService.getArticleByURL(item.url, item)
@@ -138,7 +138,6 @@ export class ArticlesComponent implements OnInit, OnDestroy, AfterViewInit {
     combineLatest(requests)
       .pipe(untilDestroyed(this))
       .subscribe(
-        _ => this.fetchArticleInfo(),
         _ => this.fetchArticleInfo()
       )
   }

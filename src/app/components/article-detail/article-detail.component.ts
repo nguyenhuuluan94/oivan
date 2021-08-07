@@ -27,7 +27,7 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
     combineLatest([this.route.params, this.route.queryParams])
       .pipe(untilDestroyed(this))
       .subscribe(([params, queryParams]) => {
-        if (params && params['id'] && queryParams && queryParams['url']) {
+        if (params?.id && queryParams?.url) {
           const id = params['id'];
           this.articleQuery.selectEntity(id)
             .pipe(untilDestroyed(this))
