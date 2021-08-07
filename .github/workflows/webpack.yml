@@ -5,16 +5,21 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+  build-test-deploy:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [14.x]
     steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set-up Node
+        uses: actions/setup-node@v1
         with:
-          node-version: ${{ matrix.node-version }}
-      - run: npm ci
-      - run: npm run build --if-present
+          node-version: "14.x"
+      - run: npm install
+      - run: npm run build
+      - name: Deploy
+        uses: nguyenhuuluan94/ovian
+        with:
+          target_branch: gh-pages
+          build_dir: build
+        env:
+          GITHUB_TOKEN: ${{ secrets.OIVAN_REPO_TOKEN }}
