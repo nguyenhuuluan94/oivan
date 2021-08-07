@@ -17,6 +17,10 @@ jobs:
       - run: npm install
       - run: npm run build
       - run: npm run deploy
+      - name: Deploy
+          uses: peaceiris/actions-gh-pages@v3.6.1
+          with:
+            github_token: ${{ secrets.OIVAN_REPO_TOKEN }}
 #      - name: Deploy
 #        uses: nguyenhuuluan94/oivan@0.0.0
 #        with:
