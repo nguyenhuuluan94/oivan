@@ -21,14 +21,14 @@
     <div class="row row-cols-1 row-cols-lg-2 align-items-stretch g-4 pt-3 py-lg-5 headline-section"
          *ngIf="headlineArticle">
       <div class="col">
-        <div class="card card-headline h-100 overflow-hidden bg-dark rounded-5 shadow-lg"
+        <div class="card card-headline h-100 overflow-hidden bg-dark rounded-5 shadow-lg cursor-pointer"
              (click)="viewDetail(headlineArticle)">
           <app-image [src]="headlineArticle.coverImageUrl"></app-image>
         </div>
       </div>
       <div class="col">
         <div class="d-flex flex-column">
-          <div class="headline-title display-6 fw-bold mb-3" (click)="viewDetail(headlineArticle)">
+          <div class="headline-title display-6 fw-bold mb-3 cursor-pointer" (click)="viewDetail(headlineArticle)">
             <span class="d-lg-none">NEWS: </span>
             <small>{{headlineArticle.title}}</small>
           </div>
@@ -43,7 +43,7 @@
 
     <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 align-items-stretch g-4 pb-5">
       <div class="col" *ngFor="let item of articles; trackBy: trackByFn">
-        <div class="card h-100 overflow-hidden text-white bg-dark" (click)="viewDetail(item)">
+        <div class="card h-100 overflow-hidden text-white bg-dark cursor-pointer" (click)="viewDetail(item)">
           <app-image [src]="item.coverImageUrl" class="bg-container"></app-image>
           <div class="d-flex flex-column h-100 p-5 pb-3 text-white position-relative">
             <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">{{ item.title }}</h2>
