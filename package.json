@@ -12,6 +12,7 @@
     "deploy": "gh-pages -d build"
   },
   "private": true,
+  "homepage": "https://nguyenhuuluan94.github.io/oivan",
   "dependencies": {
     "@angular/animations": "~12.0.1",
     "@angular/cdk": "^12.1.4",
