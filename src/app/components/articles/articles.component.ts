@@ -48,6 +48,11 @@ export class ArticlesComponent implements OnInit, OnDestroy, AfterViewInit {
       });
   }
 
+  // @TODO
+  // e2e test (using cypress is nice to have)
+  // Deploy your frontend app to cloud as public-ally accessible for review purposes
+  // CI integrate is nice to have
+
   private showErrorDialog() {
     this.isLoading = false;
     const dialogRef = this.dialog.open(AlertComponent, {
@@ -88,6 +93,10 @@ export class ArticlesComponent implements OnInit, OnDestroy, AfterViewInit {
           this.fetchList()
         }
       })
+  }
+
+  trackByFn(index: number, item: Article): number {
+    return item.id;
   }
 
   private fetchList() {

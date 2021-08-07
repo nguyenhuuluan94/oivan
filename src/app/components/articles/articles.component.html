@@ -42,7 +42,7 @@
     <h2 class="d-flex d-lg-none fw-bold justify-content-end">YOU MAY FIND INTEREST</h2>
 
     <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 align-items-stretch g-4 pb-5">
-      <div class="col" *ngFor="let item of articles">
+      <div class="col" *ngFor="let item of articles; trackBy: trackByFn">
         <div class="card h-100 overflow-hidden text-white bg-dark" (click)="viewDetail(item)">
           <app-image [src]="item.coverImageUrl" class="bg-container"></app-image>
           <div class="d-flex flex-column h-100 p-5 pb-3 text-white position-relative">
