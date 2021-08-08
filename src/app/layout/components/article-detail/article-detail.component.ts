@@ -36,7 +36,7 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
             .pipe(untilDestroyed(this))
             .subscribe(
               article => {
-                if (article) {
+                if (article && article.content) {
                   this.article = article;
                   this.isLoading = false;
                   this.titleService.setTitle(article.title.slice(0, 50));

@@ -23,7 +23,6 @@ Visit live demo at: https://nguyenhuuluan94.github.io/oivan/
 - Fetch data as GraphQL, using Apollo Angular v2 (https://apollo-angular.com/)
 - Lazy-load module
 - Lazy-load content on scroll  
-- Lazy-load image, using ngx-lazy-load-images (https://www.npmjs.com/package/ngx-lazy-load-images)
 - State management, Flux based using "AKITA" (https://datorama.github.io/akita/)
 - Dynamic set document title, using Angular TitleService (https://angular.io/guide/set-document-title)
 - Multi-language: VN and EN, using ngx-translate/core (https://github.com/ngx-translate/core)

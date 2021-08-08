@@ -7,7 +7,6 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ImageComponent implements OnInit {
   @Input() src: string;
-  defaultImage = 'https://image.flaticon.com/icons/png/512/1548/1548682.png';
 
   constructor() { }
 

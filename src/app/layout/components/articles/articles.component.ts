@@ -78,6 +78,8 @@ export class ArticlesComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   viewDetail(item: Article) {
+    this.stop.next();
+    this.stop.complete();
     this.router.navigate([item.id], {
       queryParams: {
         url: item.url
