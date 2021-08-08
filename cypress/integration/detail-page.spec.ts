@@ -14,7 +14,7 @@ describe('DetailPage', () => {
   })
 
   it('Should get article content', () => {
-    cy.get("div.title").should('be.visible');
+    cy.get("h1.title").should('be.visible');
   })
 
 })

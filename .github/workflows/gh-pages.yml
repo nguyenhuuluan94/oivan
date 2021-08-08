@@ -16,7 +16,7 @@ jobs:
           node-version: "14.x"
       - run: npm install
       - run: npm run build
-      - name: All things angular
+      - name: Deploy
         uses: AhsanAyaz/angular-deploy-gh-pages-actions@v1.3.2
         with:
           github_access_token: ${{ secrets.OIVAN_REPO_TOKEN }}
