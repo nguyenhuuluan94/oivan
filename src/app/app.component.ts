@@ -9,9 +9,7 @@ import { Title } from '@angular/platform-browser';
   providers: [{ provide: LAZYLOAD_IMAGE_HOOKS, useClass: ScrollHooks }]
 })
 export class AppComponent  {
-  public constructor(private titleService: Title) { }
-
-  public setTitle(newTitle: string) {
-    this.titleService.setTitle(newTitle);
+  public constructor(private titleService: Title) {
+    this.titleService.setTitle('OIVAN - Create and operate human-centric digital services');
   }
 }

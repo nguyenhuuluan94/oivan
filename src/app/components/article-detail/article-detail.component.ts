@@ -5,6 +5,7 @@ import { ArticleQuery } from '../../core/api/article.query';
 import { ActivatedRoute } from '@angular/router';
 import { ArticleService } from '../../core/api/article.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { Title } from '@angular/platform-browser';
 
 @UntilDestroy()
 @Component({
@@ -19,7 +20,8 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
   constructor(
     private articleQuery: ArticleQuery,
     private route: ActivatedRoute,
-    private articleService: ArticleService) {
+    private articleService: ArticleService,
+    private titleService: Title) {
   }
 
   ngOnInit() {
@@ -36,12 +38,14 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
                 if (article) {
                   this.article = article;
                   this.isLoading = false;
+                  this.titleService.setTitle(article.title.slice(0, 50));
                 } else {
                   this.articleService.getArticleByURL(queryParams['url'])
                     .pipe(untilDestroyed(this))
                     .subscribe(article => {
                         this.article = article;
                         this.isLoading = false;
+                        this.titleService.setTitle(article.title.slice(0, 50));
                       }, _ => this.isLoading = false
                     )
                 }
