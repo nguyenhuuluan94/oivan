@@ -1,11 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { combineLatest } from 'rxjs';
-import { Article } from '../../core/api/article.model';
-import { ArticleQuery } from '../../core/api/article.query';
-import { ActivatedRoute } from '@angular/router';
-import { ArticleService } from '../../core/api/article.service';
+
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Title } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
+import { ArticleService } from '../../../core/api/article.service';
+import { ArticleQuery } from '../../../core/api/article.query';
+import { Article } from '../../../core/api/article.model';
 
 @UntilDestroy()
 @Component({
