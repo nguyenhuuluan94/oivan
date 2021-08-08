@@ -11,6 +11,7 @@ import { SharedModule } from '../shared/shared.module';
 import { GraphQLModule } from '../graphql.module';
 import { LayoutComponent } from './layout.component';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { CommonModule } from '@angular/common';
     LayoutRoutingModule,
     MaterialModule,
     SharedModule,
-    LazyLoadImageModule
+    LazyLoadImageModule,
+    TranslateModule
   ]
 })
 export class LayoutModule {

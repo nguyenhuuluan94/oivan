@@ -10,6 +10,6 @@ import { Title } from '@angular/platform-browser';
 })
 export class AppComponent  {
   public constructor(private titleService: Title) {
-    this.titleService.setTitle('OIVAN - Create and operate human-centric digital services');
+    titleService.setTitle('OIVAN - Create and operate human-centric digital services');
   }
 }
