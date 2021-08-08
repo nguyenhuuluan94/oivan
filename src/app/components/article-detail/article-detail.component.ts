@@ -37,7 +37,6 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
                   this.article = article;
                   this.isLoading = false;
                 } else {
-                  // there is no article in the store
                   this.articleService.getArticleByURL(queryParams['url'])
                     .pipe(untilDestroyed(this))
                     .subscribe(article => {
@@ -52,6 +51,7 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    // destroy takeUntil
   }
 
 }

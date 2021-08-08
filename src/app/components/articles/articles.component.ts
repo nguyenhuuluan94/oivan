@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { Article } from '../../core/api/article.model';
 import { ArticleService } from '../../core/api/article.service';
 import { ArticleQuery } from '../../core/api/article.query';
@@ -14,7 +14,8 @@ import { Queue } from '../../core/helper/queue.class';
 @Component({
   selector: 'app-articles',
   templateUrl: './articles.component.html',
-  styleUrls: ['./articles.component.scss']
+  styleUrls: ['./articles.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class ArticlesComponent implements OnInit, OnDestroy, AfterViewInit {
@@ -31,7 +32,9 @@ export class ArticlesComponent implements OnInit, OnDestroy, AfterViewInit {
     private articleService: ArticleService,
     private articleQuery: ArticleQuery,
     private router: Router,
-    private dialog: MatDialog) {
+    private dialog: MatDialog,
+    private changeDetectionRef: ChangeDetectorRef
+  ) {
   }
 
   ngOnInit() {
@@ -45,6 +48,7 @@ export class ArticlesComponent implements OnInit, OnDestroy, AfterViewInit {
           this.headlineArticle = this.articles[0];
           this.articles = this.articles.slice(1);
         }
+        this.changeDetectionRef.detectChanges();
       });
   }
 
@@ -69,6 +73,7 @@ export class ArticlesComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnDestroy() {
+    // destroy takeUntil
   }
 
   viewDetail(item: Article) {
@@ -123,8 +128,10 @@ export class ArticlesComponent implements OnInit, OnDestroy, AfterViewInit {
         _ => this.showErrorDialog())
   }
 
-  // API getList mostly does not return thumbnail, must get single data to render thumbnail image
-  // To avoid ddos server, get info in queue
+  /**
+   * API getList mostly does not return thumbnail, must get single data to render thumbnail image
+   * To avoid ddos server, get info in queue
+   */
   private fetchArticleInfo(): void {
     if (this.queue.isEmpty) {
       this.isQueueOnProcessing = false;

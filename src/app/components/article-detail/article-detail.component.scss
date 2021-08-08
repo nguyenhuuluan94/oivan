@@ -1,8 +1,13 @@
 @import "src/app/styles/variable";
 
 .container {
-  min-height: calc(100vh - #{$footer-height} - #{$header-height} - 5px);
+  min-height: calc(100vh - #{$footer-height} - #{$header-height} - #{$padding-holder});
 
+  .breadcrumb {
+    a {
+      color: $primary;
+    }
+  }
   .title {
     color: $primary;
   }

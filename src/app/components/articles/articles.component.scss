@@ -1,7 +1,7 @@
 @import "src/app/styles/variable";
 
 .container {
-  min-height: calc(100vh - 200px);
+  min-height: calc(100vh - #{$footer-height} - #{$header-height} - #{$padding-holder});
 
   .tagline {
     height: 32px;
@@ -60,8 +60,7 @@
   }
 }
 
-// media queries
-@import "src/app/styles/responsive/articles.queries";
+
 
 
 
