@@ -57,6 +57,11 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     // destroy takeUntil
+    this.scrollToTop();
+  }
+
+  private scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
 }
