@@ -4,7 +4,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MatButtonModule } from '@angular/material/button';
-import { MatMenuModule } from '@angular/material/menu';
+import { MatCardModule } from '@angular/material/card';
 
 const Providers = [
   MatDividerModule,
@@ -12,7 +12,7 @@ const Providers = [
   MatDialogModule,
   ScrollingModule,
   MatButtonModule,
-  MatMenuModule
+  MatCardModule
 ]
 
 @NgModule({

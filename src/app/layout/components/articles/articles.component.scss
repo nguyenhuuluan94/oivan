@@ -28,6 +28,7 @@
 
   .headline {
     font-weight: 500;
+
     &-title {
       color: $primary;
     }
@@ -39,19 +40,31 @@
     &-headline {
       display: flex;
       align-items: center;
-      max-height: 300px;
+      max-height: 320px;
     }
   }
 
-  .bg-container {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: 0;
-    opacity: 0.45;
-    height: 100%;
+  mat-card {
+    .card-content {
+      transition: transform .2s;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+
+    .bg-container {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      top: 0;
+      opacity: 0.45;
+      height: 100%;
+    }
   }
+
+
 }
 
 ::ng-deep .dialog-background-transparent {

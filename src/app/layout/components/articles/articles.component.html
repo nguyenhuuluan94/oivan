@@ -32,7 +32,7 @@
             <span class="d-lg-none">NEWS: </span>
             <span>{{headlineArticle.title}}</span>
           </h1>
-          <div class="mb-2">{{headlineArticle.description}}</div>
+          <div class="mb-3">{{headlineArticle.description}}</div>
           <div class="headline-meta">{{headlineArticle.meta}}</div>
         </div>
       </div>
@@ -43,9 +43,9 @@
 
     <section class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 align-items-stretch g-4 pb-5">
       <article class="col" *ngFor="let item of articles; trackBy: trackByFn">
-        <div class="card h-100 overflow-hidden text-white bg-dark cursor-pointer" (click)="viewDetail(item)">
+        <mat-card class="card h-100 overflow-hidden text-white bg-dark cursor-pointer" (click)="viewDetail(item)">
           <app-image [src]="item.coverImageUrl" class="bg-container"></app-image>
-          <div class="d-flex flex-column h-100 p-5 pb-3 text-white position-relative">
+          <div class="d-flex flex-column h-100 p-5 pb-3 text-white position-relative card-content">
             <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">{{ item.title }}</h2>
             <div class="d-flex mt-auto">
               <div class="d-flex align-items-center">
@@ -53,7 +53,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </mat-card>
       </article>
     </section>
   </ng-container>

@@ -10,8 +10,8 @@
       </nav>
       <h1 class="title">{{ article.title }}</h1>
       <p class="fst-italic mt-2">{{ article.description }}</p>
-      <div class="w-100 my-4">
-        <img [src]="article.coverImageUrl" class="w-100" alt="photo">
+      <div class="w-100 my-4 mx-auto d-flex justify-content-center">
+        <img [src]="article.coverImageUrl" class="w-75" alt="photo">
       </div>
       <article [innerHTML]="article.content" style="text-align: justify"></article>
       <div *ngIf="article.meta" style="text-align: right">{{ article.meta }}</div>
